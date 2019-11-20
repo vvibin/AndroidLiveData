@@ -24,13 +24,14 @@ public class FavouritesViewModel extends AndroidViewModel {
         super(application);
         mFavHelper = new FavouritesDBHelper(application);
         Log.d("liveex","db properties are" +mFavHelper.getDatabaseName() + mFavHelper.getReadableDatabase().getVersion());
+        loaderExecutor m = new loaderExecutor();
+        m.execute(new loader());
     }
 
     public MutableLiveData<List<Favourites>> getFavs() {
         if (mFavs == null) {
             mFavs = new MutableLiveData<>();
-            loaderExecutor m = new loaderExecutor();
-            m.execute(new loader());
+
         }
 
         return mFavs;
